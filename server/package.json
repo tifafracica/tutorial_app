@@ -10,6 +10,7 @@
     "server": "node server.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "start-dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

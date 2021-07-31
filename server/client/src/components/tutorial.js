@@ -141,7 +141,7 @@ const Tutorial = props => {
               <Link
                 to={"/tutorials"}
                 className="btn btn-primary align-bt-right blue-btn m-0">
-                Home
+                Back
               </Link>
             </div>
             <p>{message}</p>

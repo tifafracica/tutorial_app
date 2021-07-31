@@ -89,15 +89,17 @@ const AddTutorial = () => {
                 />
               </div>
             </form>
+            <div className="d-flex align-bt-right">
+              <Link
+                to={"/tutorials"}
+                className="btn btn-primary align-bt-right blue-btn mt-0 margin-btn">
+                Back
+              </Link>
+              <button onClick={saveTutorial} className="btn btn-success purple-bg" type="submit">
+                Submit
+              </button>
 
-            <button onClick={saveTutorial} className="btn btn-success align-bt-right purple-bg margin-btn" type="submit">
-              Submit
-            </button>
-            <Link
-              to={"/tutorials"}
-              className="btn btn-primary align-bt-right blue-btn m-0">
-              Home
-            </Link>
+            </div>
           </div>
         </div>
       )}
