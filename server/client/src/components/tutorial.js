@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getTutorial, removeTutorial, updateTutorial } from "../services/tutorialServices";
+import { Link } from "react-router-dom";
 
 const Tutorial = props => {
   const initialTutorialState = {
@@ -132,11 +133,16 @@ const Tutorial = props => {
 
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary margin-btn"
                 onClick={updateATutorial}
               >
                 Update
               </button>
+              <Link
+                to={"/tutorials"}
+                className="btn btn-primary align-bt-right blue-btn m-0">
+                Home
+              </Link>
             </div>
             <p>{message}</p>
 

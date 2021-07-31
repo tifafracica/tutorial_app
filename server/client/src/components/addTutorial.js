@@ -51,7 +51,7 @@ const AddTutorial = () => {
               Add
             </button>
             <Link
-              to={"/tutorials/"}
+              to={"/tutorials"}
               className="btn btn-primary align-bt-right blue-btn m-0">
               Home
             </Link>
@@ -90,9 +90,14 @@ const AddTutorial = () => {
               </div>
             </form>
 
-            <button onClick={saveTutorial} className="btn btn-success align-bt-right purple-bg" type="submit">
+            <button onClick={saveTutorial} className="btn btn-success align-bt-right purple-bg margin-btn" type="submit">
               Submit
             </button>
+            <Link
+              to={"/tutorials"}
+              className="btn btn-primary align-bt-right blue-btn m-0">
+              Home
+            </Link>
           </div>
         </div>
       )}

@@ -11,9 +11,12 @@ function App() {
     <div>
       <nav className="navbar navbar-expand navbar-dark purple-bg">
         <div className="container-fluid">
-          <a href="/tutorials" className="navbar-brand">
+          <Link to={"/tutorials"} className="navbar-brand">
             The Tutorial App
-          </a>
+          </Link>
+          {/* <a href="/tutorials" className="navbar-brand">
+            The Tutorial App
+          </a> */}
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
