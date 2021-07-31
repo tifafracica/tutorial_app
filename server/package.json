@@ -4,12 +4,12 @@
   "description": "node.js restful crud api with node.js, express and mongodb",
   "main": "app.js",
   "scripts": {
-    "build": "cd tutorial_app_crud && npm run build",
-    "install-client": "cd tutorial_app_crud && npm install",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "node server.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix tutorial_app_crud\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix tutorial_app_crud\"",
+    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
