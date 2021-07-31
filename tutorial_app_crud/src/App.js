@@ -9,21 +9,25 @@ import TutorialsList from "./components/tutorialList";
 function App() {
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/tutorials" className="navbar-brand">
-          The Tutorial App
-        </a>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/tutorials"} className="nav-link">
-              Tutorials
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
-              Add
-            </Link>
-          </li>
+      <nav className="navbar navbar-expand navbar-dark purple-bg">
+        <div className="container-fluid">
+          <a href="/tutorials" className="navbar-brand">
+            The Tutorial App
+          </a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <Link to={"/tutorials"} className="nav-link active">
+                Tutorials
+              </Link>
+              <Link to={"/add"} className="nav-link">
+                Add
+              </Link>
+
+            </div>
+          </div>
         </div>
       </nav>
       <div className="container mt-3">

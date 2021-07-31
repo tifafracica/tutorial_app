@@ -1,5 +1,6 @@
 import { createTutorial } from "../services/tutorialServices";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AddTutorial = () => {
   const initialTutorialState = {
@@ -41,45 +42,58 @@ const AddTutorial = () => {
     setSubmitted(false);
   }
   return (
-    <div className="submit-form">
+    <div className="submit-form mt-5">
       {submitted ? (
-        <div>
-          <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newTutorial}>
-            Add
-          </button>
+        <div className="m-auto">
+          <h4 className="text-center mb-5">You submitted successfully!</h4>
+          <div className="d-flex justify-content-center">
+            <button className="btn btn-success margin-btn" onClick={newTutorial}>
+              Add
+            </button>
+            <Link
+              to={"/tutorials/"}
+              className="btn btn-primary align-bt-right blue-btn m-0">
+              Home
+            </Link>
+          </div>
         </div>
       ) : (
-        <div>
-          <div className="form-group">
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={tutorial.title}
-              onChange={handleInputChange}
-              name="title"
-            />
-          </div>
+        <div className="card box-props p-4">
+          <div className="card-body">
 
-          <div className="form-group">
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              required
-              value={tutorial.description}
-              onChange={handleInputChange}
-              name="description"
-            />
-          </div>
+            <h4 className="mb-3">Create Tutorial</h4>
+            <form>
+              <div className="form-group mb-3">
+                <label htmlFor="title">Title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  required
+                  value={tutorial.title}
+                  onChange={handleInputChange}
+                  name="title"
+                />
+              </div>
 
-          <button onClick={saveTutorial} className="btn btn-success">
-            Submit
-          </button>
+              <div className="form-group mb-3">
+                <label htmlFor="description">Description</label>
+                <textarea
+                  rows="10" cols="50"
+                  className="form-control"
+                  id="description"
+                  required
+                  value={tutorial.description}
+                  onChange={handleInputChange}
+                  name="description"
+                />
+              </div>
+            </form>
+
+            <button onClick={saveTutorial} className="btn btn-success align-bt-right purple-bg" type="submit">
+              Submit
+            </button>
+          </div>
         </div>
       )}
     </div>

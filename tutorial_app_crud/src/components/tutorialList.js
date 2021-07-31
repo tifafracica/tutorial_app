@@ -23,10 +23,15 @@ const TutorialList = () => {
     setSearchTitle(searchTitle);
   };
 
+  const handleKeyPress = () => {
+    findTutoByTitle(searchTitle.trim())
+  }
+
   const retrieveTutorial = () => {
     getAll().then(response => {
-      setTutorials(response.data);
-      console.log(response.data);
+      const data = (response.data.data.tutorials)
+      console.log(data)
+      setTutorials(data);
     }).catch(error => {
       console.log(error);
     });
@@ -56,96 +61,110 @@ const TutorialList = () => {
   const findTutoByTitle = () => {
     findByTitle(searchTitle)
       .then(response => {
-        setTutorials(response.data);
-        console.log(response.data);
+        const data = (response.data.data.tutorials)
+        console.log(data)
+        setTutorials(data);
       }).catch(error => {
         console.log(error)
       })
   };
 
+  const allTutorials = tutorials.title ||
+    tutorials.map((tutorial, index) => (
+      <li
+        className={
+          "list-group-item " + (index === currentIndex ? "active" : "")
+        }
+        onClick={() => setActiveTutorial(tutorial, index)}
+        key={index}
+      >
+        {tutorial.title}
+      </li>
+    ))
+
   return (
-    <div className="list row">
-      <div className="col-md-8">
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search by title"
-            value={searchTitle}
-            onChange={onChangeSearchTitle}
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={findTutoByTitle}
-            >
-              Search
-            </button>
+
+    <div className="">
+      <div className="row mb-5 mt-5">
+        <div className="col-md-4">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by title"
+              value={searchTitle}
+              onChange={onChangeSearchTitle}
+              onKeyPress={(e) => e.key === "Enter" && handleKeyPress()}
+            />
+            <div className="input-group-append">
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={findTutoByTitle}
+              >
+                Search
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div className="col-md-6">
-        <h4>Tutorials List</h4>
-
-        <ul className="list-group">
-          {tutorials ||
-            tutorials.map((tutorial, index) => (
-              <li
-                className={
-                  "list-group-item " + (index === currentIndex ? "active" : "")
-                }
-                onClick={() => setActiveTutorial(tutorial, index)}
-                key={index}
-              >
-                {tutorial.title}
-              </li>
-            ))}
-        </ul>
-
-        <button
-          className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllTutorials}
-        >
-          Remove All
-        </button>
-      </div>
-      <div className="col-md-6">
-        {currentTutorial ? (
-          <div>
-            <h4>Tutorial</h4>
-            <div>
-              <label>
-                <strong>Title:</strong>
-              </label>{" "}
-              {currentTutorial.title}
+      <div className="row">
+        <div className="col-md-6">
+          <div className="card box-props p-3">
+            <div className="card-body">
+              <h4 className="mb-4">Tutorials List</h4>
+              <ul className="list-group">
+                {allTutorials}
+              </ul>
+              <button
+                className="btn btn-danger pink-btn align-bt-right"
+                onClick={removeAllTutorials}>
+                Remove All
+              </button>
             </div>
-            <div>
-              <label>
-                <strong>Description:</strong>
-              </label>{" "}
-              {currentTutorial.description}
-            </div>
-            <div>
-              <label>
-                <strong>Status:</strong>
-              </label>{" "}
-              {currentTutorial.published ? "Published" : "Pending"}
-            </div>
-
-            <Link
-              to={"/tutorials/" + currentTutorial.id}
-              className="badge badge-warning"
-            >
-              Edit
-            </Link>
           </div>
-        ) : (
-          <div>
-            <br />
-            <p>Please click on a Tutorial...</p>
+        </div>
+        <div className="col-md-6">
+          <div className="card box-props p-3">
+            <div className="card-body">
+              {currentTutorial ? (
+                <div>
+                  <h4>Tutorial</h4>
+                  <div className="mb-2">
+                    <label>
+                      <strong>Title:</strong>
+                    </label>{" "}
+                    {currentTutorial.title}
+                  </div>
+                  <div className="mb-2">
+                    <label>
+                      <strong>Description:</strong>
+                    </label>{" "}
+                    {currentTutorial.description}
+                  </div>
+                  <div className="mb-2">
+                    <label>
+                      <strong>Status:</strong>
+                    </label>{" "}
+                    {currentTutorial.published ? "Published" : "Pending"}
+                  </div>
+
+                  <Link
+                    to={"/tutorials/" + currentTutorial.id}
+                    className="btn btn-primary align-bt-right blue-btn"
+                  >
+                    Edit
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <br />
+                  <p>Please click on a Tutorial...</p>
+                </div>
+              )}
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   )

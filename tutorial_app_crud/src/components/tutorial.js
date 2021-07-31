@@ -9,15 +9,15 @@ const Tutorial = props => {
     published: false
   };
 
-  const [currentTutorial, setCurrentTutorial] = useState(initialTutorialState);
+  const [currentTutorial, setCurrentTutorial] = useState([initialTutorialState]);
   const [message, setMessage] = useState("");
 
   const getATutorial = id => {
     getTutorial(id)
       .then(response => {
-        const zaraza = response.json()
-        setCurrentTutorial(zaraza.data);
-        console.log(zaraza.data);
+        const info = response.data
+        setCurrentTutorial(info.data.tutorial);
+        console.log(info.data.tutorial);
       }).catch(error => {
         console.log(error);
       });
@@ -28,9 +28,10 @@ const Tutorial = props => {
   }, [props.match.params.id]);
 
   const handleInputChange = event => {
-    const { name, value } = event.target;
-    setCurrentTutorial({ ...currentTutorial, [name]: value });
+    setCurrentTutorial({ ...currentTutorial, [event.target.name]: event.target.value });
+    console.log(currentTutorial)
   };
+
 
   const updatePublished = status => {
     var data = {
@@ -39,7 +40,7 @@ const Tutorial = props => {
       description: currentTutorial.description,
       published: status
     };
-
+    console.log(data)
     updateTutorial(currentTutorial.id, data)
       .then(response => {
         setCurrentTutorial({ ...currentTutorial, published: status });
@@ -73,68 +74,73 @@ const Tutorial = props => {
   return (
     <div>
       {currentTutorial ? (
-        <div className="edit-form">
-          <h4>Tutorial</h4>
-          <form>
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                name="title"
-                value={currentTutorial.title}
-                onChange={handleInputChange}
-              />
+        <div className="mt-5 m-auto w-75 card p-5 box-props">
+          <div className="card-body">
+            <h4>Edit Tutorial</h4>
+            <form>
+              <div className="form-group mb-3">
+                <label htmlFor="title">Title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  name="title"
+                  value={currentTutorial.title}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label htmlFor="description">Description</label>
+                <textarea
+                  rows="3"
+                  className="form-control"
+                  id="description"
+                  name="description"
+                  value={currentTutorial.description}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className="form-group mb-3">
+                <label>
+                  <strong>Status:</strong>
+                </label>
+                {currentTutorial.published ? " Published" : " Pending"}
+              </div>
+            </form>
+
+            <div className="align-bt-right">
+              {currentTutorial.published ? (
+                <button
+                  className="btn btn-primary margin-btn blue-btn"
+                  onClick={() => updatePublished(false)}
+                >
+                  UnPublish
+                </button>
+              ) : (
+                <button
+                  className="btn btn-primary margin-btn blue-btn"
+                  onClick={() => updatePublished(true)}
+                >
+                  Publish
+                </button>
+              )}
+
+              <button className="btn btn-primary margin-btn purple-bg" onClick={deleteTutorial}>
+                Delete
+              </button>
+
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={updateATutorial}
+              >
+                Update
+              </button>
             </div>
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="description"
-                name="description"
-                value={currentTutorial.description}
-                onChange={handleInputChange}
-              />
-            </div>
+            <p>{message}</p>
 
-            <div className="form-group">
-              <label>
-                <strong>Status:</strong>
-              </label>
-              {currentTutorial.published ? "Published" : "Pending"}
-            </div>
-          </form>
-
-          {currentTutorial.published ? (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(false)}
-            >
-              UnPublish
-            </button>
-          ) : (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(true)}
-            >
-              Publish
-            </button>
-          )}
-
-          <button className="badge badge-danger mr-2" onClick={deleteTutorial}>
-            Delete
-          </button>
-
-          <button
-            type="submit"
-            className="badge badge-success"
-            onClick={updateATutorial}
-          >
-            Update
-          </button>
-          <p>{message}</p>
+          </div>
         </div>
       ) : (
         <div>

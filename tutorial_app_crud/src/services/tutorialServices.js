@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "http://localhost:8080/api",
   headers: {
-    "Content-type": "application/json"
+    "Content-type": "application/json",
   }
 });
 
@@ -22,7 +22,7 @@ export function createTutorial(data) {
 };
 
 export function updateTutorial(id, data) {
-  return instance.put(`/tutorials/${id}`, data);
+  return instance.patch(`/tutorials/${id}`, data);
 }
 
 export function removeTutorial(id) {
