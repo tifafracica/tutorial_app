@@ -7,7 +7,7 @@
     "build": "cd tutorial_app_crud && npm run build",
     "install-client": "cd tutorial_app_crud && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "nodemon server.js",
+    "server": "nodemon server.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix tutorial_app_crud\"",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix tutorial_app_crud\"",
     "test": "echo \"Error: no test specified\" && exit 1"
