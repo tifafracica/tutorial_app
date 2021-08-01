@@ -18,7 +18,6 @@ const Tutorial = props => {
       .then(response => {
         const info = response.data
         setCurrentTutorial(info.data.tutorial);
-        console.log(info.data.tutorial);
       }).catch(error => {
         console.log(error);
       });
@@ -30,7 +29,6 @@ const Tutorial = props => {
 
   const handleInputChange = event => {
     setCurrentTutorial({ ...currentTutorial, [event.target.name]: event.target.value });
-    console.log(currentTutorial)
   };
 
 
@@ -41,11 +39,9 @@ const Tutorial = props => {
       description: currentTutorial.description,
       published: status
     };
-    console.log(data)
     updateTutorial(currentTutorial.id, data)
       .then(response => {
         setCurrentTutorial({ ...currentTutorial, published: status });
-        console.log(response.data);
       }).catch(error => {
         console.log(error)
       });
@@ -54,7 +50,6 @@ const Tutorial = props => {
   const updateATutorial = () => {
     updateTutorial(currentTutorial.id, currentTutorial)
       .then(response => {
-        console.log(response.data);
         setMessage("The tutorial was updated successfully!");
       })
       .catch(e => {
@@ -65,7 +60,6 @@ const Tutorial = props => {
   const deleteTutorial = () => {
     removeTutorial(currentTutorial.id)
       .then(response => {
-        console.log(response.data);
         props.history.push("/tutorials");
       }).catch(error => {
         console.log(error)

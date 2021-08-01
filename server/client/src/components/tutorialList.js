@@ -29,7 +29,6 @@ const TutorialList = () => {
 
   const retrieveTutorial = () => {
     getAll().then(response => {
-      console.log(response.data)
       const data = (response.data.data.tutorials)
       setTutorials(data);
     }).catch(error => {
@@ -51,7 +50,6 @@ const TutorialList = () => {
   const removeAllTutorials = () => {
     removeAll()
       .then(response => {
-        console.log(response.data);
         refreshList();
       }).catch(error => {
         console.log(error)
@@ -62,7 +60,6 @@ const TutorialList = () => {
     findByTitle(searchTitle)
       .then(response => {
         const data = (response.data.data.tutorials)
-        console.log(data)
         setTutorials(data);
       }).catch(error => {
         console.log(error)

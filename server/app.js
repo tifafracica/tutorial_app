@@ -4,9 +4,6 @@ const tutorialRouter = require('./app/routes/tutorialRoutes');
 const path = require("path");
 const app = express();
 
-
-
-
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://tifa-tutorial-app.herokuapp.com']
 const corsOptions = {
   origin: function (origin, callback) {
