@@ -9,19 +9,17 @@ if (process.env.NODE_ENV === 'production') {
 
   app.use(express.static(path.resolve(__dirname, "./client/build")));
 
-  // app.get("/*", function (request, response) {
-  //   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-  //   if (err) {
-  //     res.status(500).send(err)
-  //   }
-  // });
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, './client/build/index.html'), function (err) {
-      if (err) {
-        res.status(500).send(err)
-      }
-    })
-  })
+  app.get("/*", function (request, response) {
+    response.sendFile(path.join(__dirname, "./client/build", "index.html"));
+
+  });
+  // app.get('/*', function (req, res) {
+  //   res.sendFile(path.join(__dirname, 'index.html'), function (err) {
+  //     if (err) {
+  //       res.status(500).send(err)
+  //     }
+  //   })
+  // })
 };
 
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://tifa-tutorial-app.herokuapp.com']

@@ -29,8 +29,8 @@ const TutorialList = () => {
 
   const retrieveTutorial = () => {
     getAll().then(response => {
+      console.log(response.data)
       const data = (response.data.data.tutorials)
-      console.log(data)
       setTutorials(data);
     }).catch(error => {
       console.log(error);

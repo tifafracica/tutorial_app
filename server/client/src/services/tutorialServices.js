@@ -4,6 +4,7 @@ const instance = axios.create({
   baseURL: "https://tifa-tutorial-app.herokuapp.com/api",
   headers: {
     "Content-type": "application/json",
+    // "Access-Control-Allow-Origin": 'http://localhost:3000/'
     "Access-Control-Allow-Origin": 'https://tifa-tutorial-app.herokuapp.com'
   }
 });
