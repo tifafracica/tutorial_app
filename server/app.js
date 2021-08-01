@@ -5,22 +5,7 @@ const path = require("path");
 const app = express();
 
 
-if (process.env.NODE_ENV === 'production') {
 
-  app.use(express.static(path.resolve(__dirname, "./client/build")));
-
-  app.get("/*", function (request, response) {
-    response.sendFile(path.join(__dirname, "./client/build", "index.html"));
-
-  });
-  // app.get('/*', function (req, res) {
-  //   res.sendFile(path.join(__dirname, 'index.html'), function (err) {
-  //     if (err) {
-  //       res.status(500).send(err)
-  //     }
-  //   })
-  // })
-};
 
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://tifa-tutorial-app.herokuapp.com']
 const corsOptions = {
@@ -45,5 +30,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/tutorials', tutorialRouter)
+
+if (process.env.NODE_ENV === 'production') {
+
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+  app.get("/*", function (request, response) {
+    response.sendFile(path.join(__dirname, "./client/build", "index.html"));
+
+  });
+};
 
 module.exports = app;
