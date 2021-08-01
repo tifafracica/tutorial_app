@@ -11,6 +11,9 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get("/*", function (request, response) {
     response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+    if (err) {
+      res.status(500).send(err)
+    }
   });
 };
 
