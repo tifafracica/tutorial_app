@@ -5,7 +5,8 @@ const instance = axios.create({
   headers: {
     "Content-type": "application/json",
     "Access-Control-Allow-Origin": 'https://tifa-tutorial-app.herokuapp.com'
-  });
+  }
+});
 
 // We call axios (in a const as instance) get, post, put, delete method corresponding to HTTP Requests: GET, POST, PUT, DELETE to make CRUD Operations.
 
