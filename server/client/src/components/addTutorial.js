@@ -46,7 +46,7 @@ const AddTutorial = () => {
       {submitted ? (
         <div className="m-auto">
           <h4 className="text-center mb-5">You submitted successfully!</h4>
-          <div className="d-flex justify-content-center">
+          <div className="success-buttons">
             <button className="btn btn-success margin-btn" onClick={newTutorial}>
               Add
             </button>

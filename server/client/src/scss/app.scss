@@ -45,3 +45,44 @@
 .margin-btn{
   margin-right: 1rem;
 }
+
+.box-edit-tutorial{
+  width: 75%;
+  padding: 3rem;
+}
+.success-buttons{
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 414px)  {
+  .margin-b-mobile{
+    margin-bottom: 2rem;
+  }
+  .box-edit-tutorial{
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .align-bt-right{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    float:none;
+  }
+
+  .margin-btn{
+    margin-right: 0px;
+    margin-bottom: 1rem;
+  }
+  .submit-form {
+    max-width: 100%;
+    margin: auto;
+  }
+  .success-buttons{
+    justify-content: none;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+  }
+}

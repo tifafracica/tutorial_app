@@ -75,7 +75,7 @@ const Tutorial = props => {
   return (
     <div>
       {currentTutorial ? (
-        <div className="mt-5 m-auto w-75 card p-5 box-props">
+        <div className="mt-5 m-auto card box-edit-tutorial box-props">
           <div className="card-body">
             <h4>Edit Tutorial</h4>
             <form>

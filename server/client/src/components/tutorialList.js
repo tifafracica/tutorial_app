@@ -109,7 +109,7 @@ const TutorialList = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-6 margin-b-mobile">
           <div className="card box-props p-3">
             <div className="card-body">
               <h4 className="mb-4">Tutorials List</h4>
